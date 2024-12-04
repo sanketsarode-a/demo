@@ -36,13 +36,13 @@ jobs:
 
       # Check that all Terraform configuration files adhere to a canonical format
       - name: Terraform Format
-        run: terraform fmt -check env/prod
+        run: terraform fmt -check POC-terraform/env/prod
 
       # Generate an execution plan for Terraform
       - name: Terraform Plan
-        run: terraform plan -input=false -var-file="env/prod/prod.tfvars"
+        run: terraform plan -input=false -var-file="POC-terraform/env/prod/prod.tfvars"
 
       # Apply the changes to the infrastructure on push to "main"
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false -var-file="env/prod/prod.tfvars"
+        run: terraform apply -auto-approve -input=false -var-file="POC-terraform/env/prod/prod.tfvars"
