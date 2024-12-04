@@ -27,16 +27,28 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      # Ensure that the directory contains Terraform files before proceeding
-      - name: Check Terraform Files
+      # Print the current working directory
+      - name: Print Working Directory
+        run: pwd
+
+      # List contents of the repository to verify file presence
+      - name: List All Files
+        run: ls -R
+
+      # List contents of the specific Terraform directory
+      - name: List Terraform Files
+        run: ls -R POC-terraform/env/prod
+
+      # Check for any Terraform files in the directory
+      - name: Check for Terraform Configuration Files
         run: |
-          if [ ! -f "POC-terraform/env/prod/main.tf" ]; then
-            echo "Error: main.tf not found in POC-terraform/env/prod"
+          if [ -z "$(ls -A POC-terraform/env/prod/*.tf 2>/dev/null)" ]; then
+            echo "Error: No Terraform configuration files found in POC-terraform/env/prod"
             exit 1
           fi
 
       - name: Terraform Init
-        run: terraform init -backend-config="path=POC-terraform/env/prod"
+        run: terraform init
 
       - name: Terraform Format
         run: terraform fmt -check POC-terraform/env/prod
