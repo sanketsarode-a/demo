@@ -1,4 +1,10 @@
 # variables.tf (Root Variables)
+# variables.tf
+variable "aws_region" {
+  description = "The AWS region where resources will be created"
+  type        = string
+  default     = "us-east-1"  # Default region (can be overridden in tfvars)
+}
 
 
 /****************************
