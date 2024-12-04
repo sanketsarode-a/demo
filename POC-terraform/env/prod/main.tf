@@ -1,11 +1,5 @@
 # main.tf (Root Configuration)
 
-provider "aws" {
-  region     = var.aws_region        # Use a variable to specify the region
-  access_key = var.aws_access_key    # Use a variable for the access key
-  secret_key = var.aws_secret_key    # Use a variable for the secret key
-}
-
 
 /****************************
 VPC
