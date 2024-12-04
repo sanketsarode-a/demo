@@ -1,5 +1,6 @@
 # terraform.tfvars (Root Variable Values)
-
+aws_access_key = "AKIA3CMCCBPYG566E7PE"
+aws_secret_key = "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"
 
 
 # AWS Configuration
